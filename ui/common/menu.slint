@@ -5,6 +5,8 @@ export component MenuButton inherits Rectangle {
 
     
     in-out property <string> button-name;
+    //0 表示正常状态  1表示禁用状态
+    in-out property <int> status:0;
 
     area := TouchArea {
         clicked => {
@@ -17,7 +19,7 @@ export component MenuButton inherits Rectangle {
             width: 120px;
             height: 50px;
             border-radius: 3px;
-            background: area.pressed?Colors.rgb(13,102,171):Colors.rgb(13,136,228);
+            background: status==0?area.pressed?Colors.rgb(13,102,171):Colors.rgb(13,136,228):Colors.rgb(194,194,194);
             drop-shadow-color: black;
             drop-shadow-offset-x: 3px;
             drop-shadow-offset-y: 3px;
