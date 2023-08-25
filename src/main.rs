@@ -1,3 +1,4 @@
+#![windows_subsystem = "windows"]
 use std::time::Duration;
 use slint::CloseRequestResponse;
 slint::include_modules!();

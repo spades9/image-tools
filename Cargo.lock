@@ -3099,6 +3099,7 @@ dependencies = [
  "const-field-offset",
  "i-slint-backend-selector",
  "i-slint-core",
+ "log",
  "num-traits",
  "once_cell",
  "pin-weak",
