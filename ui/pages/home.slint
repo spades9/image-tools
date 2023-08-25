@@ -1,0 +1,138 @@
+
+export component illustrate inherits Rectangle {
+
+    callback clicked();
+    in property <string> notes;
+    in property <image> img;
+
+    TouchArea {
+        Rectangle {
+            VerticalLayout {
+                width: 160px;
+                height: 200px;
+                alignment: LayoutAlignment.center;
+                Rectangle {
+                    height: 60px;
+                    Image {
+                        width: 50px;
+                        height: 50px;
+                        image-fit: ImageFit.fill;
+                        source: img;
+                    }
+                }
+                
+                Text {
+                    width: 160px;
+                    height: 90px;
+                    text: notes;
+                    wrap: word-wrap;
+                    //vertical-alignment: TextVerticalAlignment.center;
+                    horizontal-alignment: TextHorizontalAlignment.center;
+                    font-size: 14px;
+                }
+            }
+        }
+        clicked => {
+            clicked();
+        }
+    }
+    
+    
+
+}
+
+//主要显示页面
+export component Home inherits Rectangle{
+
+    callback clicked(int);
+
+    Rectangle {
+        VerticalLayout {
+            alignment: LayoutAlignment.start;
+            HorizontalLayout {
+                Rectangle {
+                    Text {
+                        horizontal-alignment: TextHorizontalAlignment.center;
+                        text: "图像处理";
+                        font-size: 35px;
+                    }
+                }
+            }
+            Rectangle {
+                height: 80px;
+            }
+            VerticalLayout {
+                height: 300px;
+                HorizontalLayout {
+                    alignment: LayoutAlignment.center;
+                    illustrate {
+                        notes: "界面的直观设计对任何用户来说使用都很方便，只需点击一下即可转换所需的文件。";
+                        img: @image-url("../../icon/image/GIF.png");
+                        clicked => {
+                            clicked(1);
+                        }
+                    }
+                    Rectangle {
+                        width: 20px;
+                    }
+                    illustrate {
+                        notes: "您无需在设备上下载或安装任何程序，因为图像转换器可以完全在线运行。";
+                        img: @image-url("../../icon/image/IMAGE.png");
+                        clicked => {
+                            clicked(2);
+                        }
+                    }
+                    Rectangle {
+                        width: 20px;
+                    }
+                    illustrate {
+                        notes: "该工具可转换任何现代图像格式，例如JPEG, PNG, TIFF, BMP。总共支持11331种图像转换。";
+                        img: @image-url("../../icon/image/JPG.png");
+                        clicked => {
+                            clicked(3);
+                        }
+                    }
+                }
+                Rectangle {
+                    height: 20px;
+                }
+                HorizontalLayout {
+                    alignment: LayoutAlignment.center;
+                    illustrate {
+                        notes: "将照片或图片拖放到页面上，点击“转换”按钮，稍等片刻，然后下载结果。很简单！";
+                        img: @image-url("../../icon/image/PDF.png");
+                        clicked => {
+                            clicked(4);
+                        }
+                    }
+                    Rectangle {
+                        width: 20px;
+                    }
+                    illustrate {
+                        notes: "我们保存您的文件的时间不会超过 24 小时，之后我们将从服务器中永久删除它们。您可以确信没有人可以访问它们。 阅读更多有关安全性的内容。";
+                        img: @image-url("../../icon/image/PNG.png");
+                        clicked => {
+                            clicked(5);
+                        }
+                    }
+                    Rectangle {
+                        width: 20px;
+                    }
+                    illustrate {
+                        notes: "Convertio 是基于云的解决方案，这意味着转换是在我们这边完成的，而且此工具不会降低您的操作系统的速度。";
+                        img: @image-url("../../icon/image/SVG.png");
+                        clicked => {
+                            clicked(6);
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+    
+    
+    
+}
+
+

@@ -1,0 +1,31 @@
+import { Button } from "std-widgets.slint";
+import { Home } from "pages/home.slint";
+export component HelloWorld inherits Window{
+    //窗体图标
+    icon: @image-url("../icon/icon.png");
+    //窗体名称
+    title: "图像处理";
+    //点击处理方法
+    callback execute();
+    callback clicked(int);
+    //显示文本
+    in property <string> name: "默认";
+    in-out property <length> font_size: 12px;
+    default-font-size: font_size;
+    
+    //窗体最小尺寸
+    min-width: 900px;
+    min-height: 600px;
+
+    max-width: 1200px;
+    max-height: 800px;
+
+    Home { 
+        clicked(e) => {
+            clicked(e);
+        }
+    }
+
+
+    
+}
