@@ -20,10 +20,9 @@ async fn main() {
     env_logger::init_from_env(env);
 
     debug!("日志初始化成功");
-    slint::init_translations!(concat!(env!("CARGO_MANIFEST_DIR"), "/lang/"));
+    
     let win = HelloWorld::new().unwrap();
     
-
     win.on_execute({
         let win_weak = win.as_weak();
         move || {
