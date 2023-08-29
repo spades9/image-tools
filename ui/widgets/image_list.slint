@@ -10,13 +10,13 @@ export component ImageList inherits Rectangle{
     area := TouchArea {}
 
     Rectangle {
-        height: 100px;
+        height: 40px;
         background: area.has-hover?#dcdbdb:#FFFFFF;
         HorizontalLayout {
             alignment: LayoutAlignment.space-around;
-            height: 60px;
+            height: 40px;
             Rectangle {
-                height: 60px;
+                height: 40px;
                 width: 400px;
                 Text {
                     horizontal-alignment: TextHorizontalAlignment.left;
@@ -27,7 +27,7 @@ export component ImageList inherits Rectangle{
                 }
             }
             Rectangle {
-                height: 60px;
+                height: 40px;
                 width: 100px;
                 Text {
                     width: 100px;
@@ -36,15 +36,6 @@ export component ImageList inherits Rectangle{
                     wrap: TextWrap.word-wrap;
                 }
             }
-            /*Rectangle {
-                height: 100px;
-                width: 120px;
-                Button { 
-                    width: 120px;
-                    height: 40px;
-                    text: status==0?"开始":"停止";
-                }
-            }*/
         }
     }
     

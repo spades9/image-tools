@@ -1,0 +1,103 @@
+struct Theme {
+
+    theme-name:string,
+
+    //主要按钮
+    //默认颜色背景色-文字颜色
+    primary-background-color:color,
+    primary-text-color:color,
+
+    //鼠标悬浮背景色-文字颜色
+    primary-hover-background-color:color,
+    primary-hover-text-color:color,
+
+    //鼠标点击背景色-文字颜色
+    primary-click-background-color:color,
+    primary-click-text-color:color,
+
+    //次要按钮
+    //默认颜色背景色-文字颜色
+    second-background-color:color,
+    second-text-color:color,
+
+    //鼠标悬浮背景色-文字颜色
+    second-hover-background-color:color,
+    second-hover-text-color:color,
+
+    //鼠标点击背景色-文字颜色
+    second-click-background-color:color,
+    second-click-text-color:color
+
+    //
+
+}
+
+
+global FFTheme {
+
+    out property <Theme> bright: {
+        theme-name:"bright",
+        //主要按钮
+        //默认颜色背景色-文字颜色
+        primary-background-color:Colors.red,
+        primary-text-color:Colors.red,
+
+        //鼠标悬浮背景色-文字颜色
+        primary-hover-background-color:Colors.red,
+        primary-hover-text-color:Colors.red,
+
+        //鼠标点击背景色-文字颜色
+        primary-click-background-color:Colors.red,
+        primary-click-text-color:Colors.red,
+
+        //次要按钮
+        //默认颜色背景色-文字颜色
+        second-background-color:Colors.red,
+        second-text-color:Colors.red,
+
+        //鼠标悬浮背景色-文字颜色
+        second-hover-background-color:Colors.red,
+        second-hover-text-color:Colors.red,
+
+        //鼠标点击背景色-文字颜色
+        second-click-background-color:Colors.red,
+        second-click-text-color:Colors.red
+    };
+
+    out property <Theme> dark: {
+        theme-name:"dark",
+        //主要按钮
+        //默认颜色背景色-文字颜色
+        primary-background-color:Colors.red,
+        primary-text-color:Colors.red,
+
+        //鼠标悬浮背景色-文字颜色
+        primary-hover-background-color:Colors.red,
+        primary-hover-text-color:Colors.red,
+
+        //鼠标点击背景色-文字颜色
+        primary-click-background-color:Colors.red,
+        primary-click-text-color:Colors.red,
+
+        //次要按钮
+        //默认颜色背景色-文字颜色
+        second-background-color:Colors.red,
+        second-text-color:Colors.red,
+
+        //鼠标悬浮背景色-文字颜色
+        second-hover-background-color:Colors.red,
+        second-hover-text-color:Colors.red,
+
+        //鼠标点击背景色-文字颜色
+        second-click-background-color:Colors.red,
+        second-click-text-color:Colors.red
+    };
+
+    in-out property <Theme> theme: bright;
+
+    
+
+
+}
+
+export { FFTheme }

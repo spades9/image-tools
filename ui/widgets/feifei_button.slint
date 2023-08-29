@@ -1,0 +1,21 @@
+import { FFTheme } from "../theme.slint";
+
+component FFButton{
+
+    in-out property <string> button-name;
+
+    Rectangle {
+        area := TouchArea {}
+
+        Rectangle {
+            background: Colors.red;
+            Text {
+                text: button-name;
+            }
+        }
+
+    }
+}
+
+
+export { FFButton }

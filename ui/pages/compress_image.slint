@@ -12,7 +12,7 @@ export component CompressImage inherits Rectangle {
             VerticalLayout {
                 HorizontalBox { 
                     alignment: LayoutAlignment.start;
-                    Button { 
+                    Button {
                         width: 100px;
                         height: 30px;
                         text: "选择文件夹";
@@ -21,22 +21,32 @@ export component CompressImage inherits Rectangle {
                         }
                     }
                     Rectangle {
-                        width: 780px;
+                        width: 670px;
                         height: 30px;
                         border-color: #CCCCCC;
                         border-width: 1px;
                         border-radius: 3px;
                         Text {
-                            width: 760px;
+                            width: 650px;
                             horizontal-alignment: TextHorizontalAlignment.left;
                             font-size: 15px;
                             text: CompressGlobal.compress-path;
                             color: #5e5d5d;
                         }
                     }
+                    Rectangle {
+                        width: 5px;
+                    }
+                    Rectangle {
+                        Button {
+                            text: "开始处理";
+                            width: 100px;
+                            height: 30px;
+                        }
+                    }
                     
                 }
-                ListView { 
+                ListView {
                     width: 100%;
                     for image in CompressGlobal.image-list : ImageList{
                         name: image.name;
