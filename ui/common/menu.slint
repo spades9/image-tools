@@ -7,17 +7,18 @@ export component MenuButton inherits Rectangle {
     in-out property <string> button-name;
     //0 表示正常状态  1表示禁用状态
     in-out property <int> status:0;
+    callback switch-page();
 
     area := TouchArea {
         clicked => {
-            
+            switch-page()
         }
     }
 
     VerticalLayout {
         Rectangle {
-            width: 120px;
-            height: 50px;
+            width: 140px;
+            height: 40px;
             border-radius: 3px;
             background: status==0?area.pressed?Colors.rgb(13,102,171):Colors.rgb(13,136,228):Colors.rgb(194,194,194);
             drop-shadow-color: black;
@@ -32,52 +33,33 @@ export component MenuButton inherits Rectangle {
             }
             
         }
-        Rectangle {height: 2px;}
     }
     
 
 }
 
-export component Menu inherits Rectangle{
+export component Menu inherits HorizontalLayout{
 
-    width: 300px;
-    height: 300px;
+    in-out property <int> current-page: 0;
 
-    Rectangle {
-        width: 120px;
-        VerticalLayout {
-            MenuButton {
-                button-name: "格式转换";
-            }
-            MenuButton {
-                button-name: "压缩图片";
-            }
-            MenuButton {
-                button-name: "关于软件";
-            }
-            MenuButton {
-                button-name: "版本更新";
-            }
-        }
-        
+    MenuButton {
+        button-name: @tr("Menu" => "compress pictures");
+        switch-page => {current-page = 0}
+    }
+    MenuButton {
+        button-name: @tr("format conversion");
+        switch-page => {current-page = 1;}
+    }
+    MenuButton {
+        button-name: @tr("About Software");
+        switch-page => {current-page = 2;}
+    }
+    MenuButton {
+        button-name: @tr("Settings");
+        switch-page => {current-page = 3;}
     }
 }
 
-
-export component MyApp {
-    width: 200px;
-    height: 100px;
-    Rectangle {
-        width: 100px;
-        height: 50px;
-        border-radius: 10px;
-        background: blue;
-        drop-shadow-color: black;
-        drop-shadow-offset-x: 10px;
-        drop-shadow-offset-y: 10px;
-        drop-shadow-blur: 10px;
-    }
-}
 
 
 

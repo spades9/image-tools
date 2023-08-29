@@ -1,5 +1,9 @@
 import { Button } from "std-widgets.slint";
 import { Home } from "pages/home.slint";
+import { CompressGlobal } from "./model/compress_global.slint";
+
+export { CompressGlobal }
+
 export component HelloWorld inherits Window{
     //窗体图标
     icon: @image-url("../icon/icon.png");
@@ -8,6 +12,7 @@ export component HelloWorld inherits Window{
     //点击处理方法
     callback execute();
     callback clicked(int);
+    callback compress_open();
     //显示文本
     in property <string> name: "默认";
     in-out property <length> font_size: 12px;
@@ -23,6 +28,9 @@ export component HelloWorld inherits Window{
     Home { 
         clicked(e) => {
             clicked(e);
+        }
+        compress_open => {
+            compress_open();
         }
     }
 

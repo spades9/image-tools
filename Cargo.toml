@@ -1,5 +1,5 @@
 [package]
-name = "image_ui"
+name = "image"
 version = "0.1.0"
 edition = "2021"
 build = "build.rs"
@@ -8,8 +8,13 @@ build = "build.rs"
 
 [dependencies]
 slint = {version = "1.1.1",features = ["backend-winit","log"]}
+log = "0.4.20"
+env_logger = "0.10.0"
 tokio ={ version = "1",features = ["full"]}
+#opencv图片处理
 opencv = "0.84.5"
+#打开文件
+rfd = "0.11.4"
 
 
 

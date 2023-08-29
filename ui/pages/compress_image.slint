@@ -1,0 +1,32 @@
+import {Content} from "../common/content.slint";
+import { HorizontalBox , Button, TextEdit} from "std-widgets.slint";
+import {CompressGlobal} from "../model/compress_global.slint";
+
+export component CompressImage inherits Rectangle { 
+
+    callback open();
+
+    Content {
+        Rectangle {
+            HorizontalBox { 
+                alignment: LayoutAlignment.start;
+                Button { 
+                    width: 100px;
+                    height: 30px;
+                    text: "选择文件夹";
+                    clicked => {
+                        open();
+                    }
+                }
+                Text { 
+                    text: "";
+                }
+                TextInput {
+                    text: "";
+                }
+            }
+        }
+    }
+
+}
+
