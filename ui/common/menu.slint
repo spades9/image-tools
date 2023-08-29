@@ -43,19 +43,22 @@ export component Menu inherits HorizontalLayout{
     in-out property <int> current-page: 0;
 
     MenuButton {
-        button-name: @tr("Menu" => "compress pictures");
+        button-name: "压缩图片";
         switch-page => {current-page = 0}
     }
+    Rectangle {width: 4px;}
     MenuButton {
-        button-name: @tr("format conversion");
+        button-name: "转换格式";
         switch-page => {current-page = 1;}
     }
+    Rectangle {width: 4px;}
     MenuButton {
-        button-name: @tr("About Software");
+        button-name: "关于软件";
         switch-page => {current-page = 2;}
     }
+    Rectangle {width: 4px;}
     MenuButton {
-        button-name: @tr("Settings");
+        button-name: "系统设置";
         switch-page => {current-page = 3;}
     }
 }

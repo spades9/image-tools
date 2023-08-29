@@ -1,0 +1,52 @@
+
+
+import { Button } from "std-widgets.slint";
+export component ImageList inherits Rectangle{ 
+
+    in-out property <string> name;
+    in-out property <int> status;
+    in-out property <string> button-name;
+
+    area := TouchArea {}
+
+    Rectangle {
+        height: 100px;
+        background: area.has-hover?#dcdbdb:#FFFFFF;
+        HorizontalLayout {
+            alignment: LayoutAlignment.space-around;
+            height: 60px;
+            Rectangle {
+                height: 60px;
+                width: 400px;
+                Text {
+                    horizontal-alignment: TextHorizontalAlignment.left;
+                    width: 400px;
+                    text: name;
+                    font-size: 15px;
+                    overflow: TextOverflow.elide;
+                }
+            }
+            Rectangle {
+                height: 60px;
+                width: 100px;
+                Text {
+                    width: 100px;
+                    text: status==0?"等待":status==1?"处理中":"完成";
+                    font-size: 15px;
+                    wrap: TextWrap.word-wrap;
+                }
+            }
+            /*Rectangle {
+                height: 100px;
+                width: 120px;
+                Button { 
+                    width: 120px;
+                    height: 40px;
+                    text: status==0?"开始":"停止";
+                }
+            }*/
+        }
+    }
+    
+}
+

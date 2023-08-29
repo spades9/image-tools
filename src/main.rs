@@ -1,13 +1,11 @@
 //#![windows_subsystem = "windows"]
-use std::time::Duration;
-use slint::{CloseRequestResponse, SharedString};
+use std::{time::Duration, rc::Rc};
+use slint::{CloseRequestResponse, SharedString, ModelRc, VecModel};
 slint::include_modules!();
 use env_logger::Env;
-
-mod camera;
+use std::fs::{read_dir,metadata};
 mod utils;
 mod model;
-use camera::open_camera;
 use utils::open_folder;
 
 use log::{info,debug};
@@ -39,7 +37,7 @@ async fn main() {
     });
 
     win.on_clicked(|_e:i32|{
-        open_camera();
+        
     });
     
     let compress = win.as_weak().unwrap();
@@ -48,7 +46,32 @@ async fn main() {
         let path = open_folder();
         if !path.eq("") {
             //输出目录到页面
-            compress.global::<CompressGlobal>().set_compress_path(SharedString::from("123"));
+            compress.global::<CompressGlobal>().set_compress_path(SharedString::from(&path));
+            let image_list = compress.global::<CompressGlobal>().get_image_list();
+            let mut new_image_list = Vec::new();
+            println!("{:?}",image_list);
+            //获取到这个目录之后获取这个文件夹下的所有图片文件
+            let read_result = read_dir(&path);
+            if let Ok(dirs) = read_result {
+                for entiy in dirs {
+                    if let Ok(dir_entry) = entiy {
+                        let path = dir_entry.path();
+                        if let Ok(f) = metadata(&path){
+                            if f.is_file() {
+                                if let Some(file_name) = path.file_name(){
+                                    info!("file_name:{}",file_name.to_str().unwrap());
+                                    new_image_list.push(ImageList{
+                                        name:SharedString::from(file_name.to_str().unwrap()),
+                                        path:SharedString::from(file_name.to_str().unwrap()),
+                                        status:0
+                                    });
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            compress.global::<CompressGlobal>().set_image_list(ModelRc::from(Rc::new(VecModel::from(new_image_list.clone()))));
         }
     });
 
@@ -59,8 +82,6 @@ async fn main() {
         //不可以关闭
         //CloseRequestResponse::KeepWindowShown
     });
-    
-    info!(concat!(env!("CARGO_MANIFEST_DIR"), "/lang/"));
     
     let _ = win.run();
     info!("Program exit!!!");
