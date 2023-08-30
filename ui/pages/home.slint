@@ -1,18 +1,23 @@
-import { MenuButton,Menu } from "../common/menu.slint";
+import { Menu } from "../common/menu.slint";
 import { CompressImage } from "./compress_image.slint";
 import { FormatImage } from "./format_image.slint";
 import { About } from "./about.slint";
 import { VersionUpgrade } from "./version_upgrade.slint";
+import { FFButton } from "../widgets/feifei_button.slint";
 
 //主要显示页面
 export component Home inherits Rectangle{
 
     callback clicked(int);
+    callback move-window(length,length);
 
     out property <int> current-page: 0;
     callback compress_open();
+    border-color: black;
+    border-width: 2px;
 
     VerticalLayout {
+        //FFStatusBar {}
         //菜单部分
         HorizontalLayout {
             padding-top: 10px;

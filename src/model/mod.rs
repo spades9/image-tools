@@ -1,3 +1,3 @@
 mod compress;
 
-pub use compress::ImageList;
+pub use compress::{ImageList,ImageListData};

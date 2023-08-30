@@ -1,11 +1,11 @@
-
+import { FFTheme } from "../theme.slint";
 
 export component Content inherits Rectangle { 
     Rectangle {
         Rectangle {
             @children
             border-radius: 5px;
-            background: Colors.white;
+            background: FFTheme.theme.content-background-color;
             drop-shadow-color: #dcd9d9;
             drop-shadow-offset-x: 0px;
             drop-shadow-offset-y: 0px;

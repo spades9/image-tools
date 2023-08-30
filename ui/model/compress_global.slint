@@ -11,14 +11,8 @@ export global CompressGlobal {
     in-out property <string> compress-path : "e://rust";
 
     //存放数据
-    in-out property <[ImageList]> image-list : [
-        {name:"1",path:"",status:0},
-        {name:"1",path:"",status:0},
-        {name:"1",path:"",status:0},
-        {name:"1",path:"",status:0},
-        {name:"1",path:"",status:0},
-        {name:"1",path:"",status:0},
-        {name:"1",path:"",status:0},
-        {name:"1",path:"",status:0}
-    ];
+    in-out property <[ImageList]> image-list : [];
+
+    //批量处理
+    callback compress-batching();
 }

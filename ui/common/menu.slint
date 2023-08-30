@@ -1,66 +1,49 @@
+import {FFButton} from "../widgets/feifei_button.slint";
+import {FFTheme} from "../theme.slint";
+import { SystemGlobal } from "../model/system_global.slint";
 
-
-
-export component MenuButton inherits Rectangle { 
-
-    
-    in-out property <string> button-name;
-    //0 表示正常状态  1表示禁用状态
-    in-out property <int> status:0;
-    callback switch-page();
-
-    area := TouchArea {
-        clicked => {
-            switch-page()
-        }
-    }
-
-    VerticalLayout {
-        Rectangle {
-            width: 140px;
-            height: 40px;
-            border-radius: 3px;
-            background: status==0?area.pressed?Colors.rgb(13,102,171):Colors.rgb(13,136,228):Colors.rgb(194,194,194);
-            drop-shadow-color: black;
-            drop-shadow-offset-x: 3px;
-            drop-shadow-offset-y: 3px;
-            drop-shadow-blur: 10px;
-            
-            Text {
-                text: button-name;
-                color: Colors.white;
-                font-size: 14px;
-            }
-            
-        }
-    }
-    
-
-}
-
-export component Menu inherits HorizontalLayout{
+export component Menu inherits Rectangle{
 
     in-out property <int> current-page: 0;
 
-    MenuButton {
-        button-name: "压缩图片";
-        switch-page => {current-page = 0}
+    HorizontalLayout {
+        alignment: LayoutAlignment.start;
+        
+        FFButton {
+            button-name: "压缩图片";
+            clicked => {current-page = 0;}
+        }
+        FFButton {
+            button-name: "格式转换";
+            clicked => {current-page = 1;}
+        }
+        FFButton {
+            button-name: "关于软件";
+            clicked => {current-page = 2;}
+        }
+        FFButton {
+            button-name: "系统设置";
+            clicked => {current-page = 3;}
+        }
+        FFButton {
+            button-name: "主题切换";
+            clicked => {
+                if(FFTheme.theme == FFTheme.bright){
+                    FFTheme.theme = FFTheme.dark;
+                }else{
+                    FFTheme.theme = FFTheme.bright;
+                }
+            }
+        }
+        FFButton {
+            button-name: "关闭程序";
+            clicked => {
+                SystemGlobal.system-close();
+            }
+        }
+        
     }
-    Rectangle {width: 4px;}
-    MenuButton {
-        button-name: "转换格式";
-        switch-page => {current-page = 1;}
-    }
-    Rectangle {width: 4px;}
-    MenuButton {
-        button-name: "关于软件";
-        switch-page => {current-page = 2;}
-    }
-    Rectangle {width: 4px;}
-    MenuButton {
-        button-name: "系统设置";
-        switch-page => {current-page = 3;}
-    }
+    
 }
 
 

@@ -1,18 +1,20 @@
 import { Button } from "std-widgets.slint";
 import { Home } from "pages/home.slint";
 import { CompressGlobal } from "./model/compress_global.slint";
-
-export { CompressGlobal }
+import { SystemGlobal } from "./model/system_global.slint";
+export { CompressGlobal,SystemGlobal }
 
 export component HelloWorld inherits Window{
     //窗体图标
     icon: @image-url("./assets/icon/logo.png");
     //窗体名称
     title: "图像处理";
+    no-frame: false;
     //点击处理方法
     callback execute();
     callback clicked(int);
     callback compress_open();
+    callback move-window(length,length);
     //显示文本
     in property <string> name: "默认";
     in-out property <length> font_size: 12px;
@@ -21,9 +23,6 @@ export component HelloWorld inherits Window{
     //窗体最小尺寸
     min-width: 900px;
     min-height: 600px;
-
-    max-width: 1200px;
-    max-height: 800px;
 
     Home { 
         clicked(e) => {

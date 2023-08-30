@@ -2,6 +2,7 @@ import {Content} from "../common/content.slint";
 import { HorizontalBox , Button, TextEdit, ListView} from "std-widgets.slint";
 import {CompressGlobal} from "../model/compress_global.slint";
 import {ImageList} from "../widgets/image_list.slint";
+import { FFButton } from "../widgets/feifei_button.slint";
 
 export component CompressImage inherits Rectangle { 
 
@@ -12,24 +13,23 @@ export component CompressImage inherits Rectangle {
             VerticalLayout {
                 HorizontalBox { 
                     alignment: LayoutAlignment.start;
-                    Button {
-                        width: 100px;
-                        height: 30px;
-                        text: "选择文件夹";
+                    FFButton {
+                        button-name: "选择文件夹";
+                        ff-height: 38px;
                         clicked => {
                             open();
                         }
                     }
                     Rectangle {
                         width: 670px;
-                        height: 30px;
+                        height: 40px;
                         border-color: #CCCCCC;
                         border-width: 1px;
                         border-radius: 3px;
                         Text {
                             width: 650px;
                             horizontal-alignment: TextHorizontalAlignment.left;
-                            font-size: 15px;
+                            font-size: 18px;
                             text: CompressGlobal.compress-path;
                             color: #5e5d5d;
                         }
@@ -38,10 +38,12 @@ export component CompressImage inherits Rectangle {
                         width: 5px;
                     }
                     Rectangle {
-                        Button {
-                            text: "开始处理";
-                            width: 100px;
-                            height: 30px;
+                        FFButton {
+                            button-name: "批量处理";
+                            ff-height: 38px;
+                            clicked => {
+                                CompressGlobal.compress-batching();
+                            }
                         }
                     }
                     

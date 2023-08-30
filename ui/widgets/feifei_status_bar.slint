@@ -1,0 +1,104 @@
+component FFStatusBar inherits Rectangle{
+
+    in-out property <length> ff-x;
+    in-out property <length> ff-y;
+
+    callback move-window(length,length);
+
+    area := TouchArea {
+        pointer-event(event) => {
+            event.kind
+        }
+        moved => {
+            move-window(self.mouse-x,self.mouse-y);
+        }
+    }
+
+    height: 40px;
+    width: 100%;
+    HorizontalLayout {
+        alignment: LayoutAlignment.space-between;
+        padding-left: 5px;
+        padding-top: 5px;
+        padding-right: 5px;
+        Rectangle {
+            width: 200px;
+            background: Colors.red;
+            Text {
+                width: parent.width;
+                horizontal-alignment: TextHorizontalAlignment.left;
+                text: "logo";
+            }
+        }
+
+        Rectangle {
+            width: 200px;
+            Text {
+                horizontal-alignment: TextHorizontalAlignment.center;
+                width: parent.width;
+                text: "title";
+                font-size: 15px;
+                font-weight: 800;
+            }
+        }
+
+        Rectangle {
+            width: 200px;
+            HorizontalLayout {
+                alignment: LayoutAlignment.end;
+                Rectangle {
+                    width: 40px;
+                    height: 40px;
+                    background: Colors.blue;
+                }
+                Rectangle {
+                    width: 40px;
+                    height: 40px;
+                    background: Colors.red;
+                }
+                Rectangle {
+                    width: 40px;
+                    height: 40px;
+                    background: Colors.yellow;
+                }
+            }
+        }
+    }
+    
+    
+}
+
+component test inherits Window{
+    
+    in-out property <length> ff-x : 0;
+    in-out property <length> ff-y : 0;
+
+    callback move-window(length,length);
+
+    min-width: 300px;
+    max-width: 1000px;
+
+    VerticalLayout {
+        FFStatusBar {
+            ff-x <=> ff-x;
+            ff-y <=> ff-y;
+        }
+        Rectangle {
+            Text {
+                text: ff-x / 1px;
+            }
+        }
+        Rectangle {
+            Text {
+                text: ff-y / 1px;
+            }
+        }
+
+    }
+
+    
+
+    
+}
+
+export { FFStatusBar }

@@ -1,21 +1,94 @@
-import { FFTheme } from "../theme.slint";
+import { FFTheme,ButtonTheme } from "../theme.slint";
 
-component FFButton{
 
+component FFButton inherits Rectangle{
+
+    in-out property <length> ff-width : 100px;
+    in-out property <length> ff-height: 40px;
+    in-out property <length> ff-font-size: 17px;
+
+    width: ff-width;
+    height: ff-height;
+
+    //按钮文字
     in-out property <string> button-name;
+    //按钮类型  主要和次要
+    in-out property <string> button-type:"primary";
+    //主题相关
+    in-out property <ButtonTheme> theme : FFTheme.theme.primary-button;
+    //鼠标悬浮
+    in-out property <MouseCursor> mouse-cursor: MouseCursor.default;
+    //圆角
+    in-out property <length> ff-border-radius: 3px;
+    //边框宽度
+    in-out property <length> ff-border-width: 0.8px;
+    
+    callback clicked();
 
     Rectangle {
-        area := TouchArea {}
-
+        width: area.pressed?ff-width - 10px : ff-width;
+        height: area.pressed?ff-height -5px : ff-height;
+        border-radius: ff-border-radius;
+        animate width{ 
+            duration:60ms;
+        }
+        animate height{ 
+            duration:60ms;
+        }
+        area := TouchArea {
+            clicked => {
+                clicked()
+            }
+            mouse-cursor: mouse-cursor;
+        }
+        background: area.pressed?theme.click-background-color:area.has-hover?theme.hover-background-color:theme.background-color;
+        border-color: area.pressed?theme.click-border-color:area.has-hover?theme.hover-border-color:theme.border-color;
+        border-width: ff-border-width;
+        animate background{ 
+            duration:60ms;
+        }
+        //阴影效果
+        drop-shadow-color: black;
+        drop-shadow-offset-x: 2px;
+        drop-shadow-offset-y: 2px;
+        drop-shadow-blur: 6px;
         Rectangle {
-            background: Colors.red;
             Text {
                 text: button-name;
+                color: area.pressed?theme.click-text-color:area.has-hover?theme.hover-text-color:theme.text-color;
+                font-size: ff-font-size;
+                font-weight: 500;
             }
         }
 
     }
 }
 
+
+component text {
+    in-out property <string> tip;
+    width: 200px;
+    height: 200px;
+    HorizontalLayout {
+        Rectangle {
+            width: 100px;
+            height: 50px;
+            FFButton{
+                button-name: "按钮";
+                clicked => {
+                    //切换主题颜色
+                    //FFTheme.theme = FFTheme.dark;
+                    tip = "点击了";
+                }
+            }
+        }
+        Rectangle {
+            Text {
+                text :tip;
+            }
+        }
+    }
+    
+}
 
 export { FFButton }
