@@ -3,6 +3,7 @@ import { HorizontalBox , Button, TextEdit, ListView} from "std-widgets.slint";
 import {CompressGlobal} from "../model/compress_global.slint";
 import {ImageList} from "../widgets/image_list.slint";
 import { FFButton } from "../widgets/feifei_button.slint";
+import {FFTheme} from "../theme.slint";
 
 export component CompressImage inherits Rectangle { 
 
@@ -29,7 +30,7 @@ export component CompressImage inherits Rectangle {
                             horizontal-alignment: TextHorizontalAlignment.left;
                             font-size: 18px;
                             text: CompressGlobal.compress-path;
-                            color: #5e5d5d;
+                            color: FFTheme.theme.content-text-color;
                         }
                     }
                     Rectangle {

@@ -76,36 +76,26 @@ async fn main() {
 
     let compress = win.as_weak();
     win.global::<CompressGlobal>().on_compress_batching({
-        info!("开始处理文件");
         let win_compress = compress.clone();
-        //获取选择的所有文件
-        let image_list = win_compress.unwrap().global::<CompressGlobal>().get_image_list();
-        let compress = win_compress.unwrap().as_weak();
-        let mut list = Vec::new();
-        let mut count:i32 = 0;
-        let temp = image_list.row_data(0);
-        println!("temp:{:?}",temp);
-        while image_list.row_data(count as usize).is_some() {
-            info!("count:{}",count);
-            count = count + 1;
-        }
-        
-        info!("get count:{}",count);
-        for i in 0..count {
-            if let Some(data) = image_list.row_data(i as usize){
-                list.push(
-                    ImageListData{
-                        name:data.name.to_string(),
-                        path:data.path.to_string(),
-                        status:data.status
-                    }
-                );
-            }
-        }
         move || {
             let win_weak = compress.clone();
+            //let mut count:i32 = 0;
+            let image_list = win_compress.unwrap().global::<CompressGlobal>().get_image_list();
+            let count = image_list.row_count();
+            let mut list = Vec::new();
+            for i in 0..count {
+                if let Some(data) = image_list.row_data(i as usize){
+                    list.push(
+                        ImageListData{
+                            name:data.name.to_string(),
+                            path:data.path.to_string(),
+                            status:data.status
+                        }
+                    );
+                }
+            }
             tokio::spawn(async move {
-                info!("count:{}",count);
+                info!("1-count:{}",count);
                 for li in 0..count{
                     info!("开始处理");
                     let _ = win_weak.clone().upgrade_in_event_loop(move |hello|{
@@ -117,7 +107,7 @@ async fn main() {
                         image_list.set_row_data(li as usize, d);
                         hello.window().request_redraw();
                     });
-                    thread::sleep(Duration::from_millis(2000));
+                    thread::sleep(Duration::from_millis(500));
                     info!("处理完成");
                 
                     let _ = win_weak.clone().upgrade_in_event_loop(move |hello|{
