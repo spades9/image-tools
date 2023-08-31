@@ -74,12 +74,13 @@ async fn main() {
         let _ = system_global.hide();
     });
 
-    let compress = win.as_weak().unwrap();
+    let compress = win.as_weak();
     win.global::<CompressGlobal>().on_compress_batching({
         info!("开始处理文件");
+        let win_compress = compress.clone();
         //获取选择的所有文件
-        let image_list = compress.global::<CompressGlobal>().get_image_list();
-        let compress = compress.as_weak();
+        let image_list = win_compress.unwrap().global::<CompressGlobal>().get_image_list();
+        let compress = win_compress.unwrap().as_weak();
         let mut list = Vec::new();
         let mut count:i32 = 0;
         let temp = image_list.row_data(0);
