@@ -5,10 +5,9 @@ import { SystemGlobal } from "../model/system_global.slint";
 export component Menu inherits Rectangle{
 
     in-out property <int> current-page: 0;
-
     HorizontalLayout {
         alignment: LayoutAlignment.start;
-        
+
         FFButton {
             button-name: "压缩图片";
             clicked => {current-page = 0;}

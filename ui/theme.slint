@@ -27,7 +27,9 @@ struct Theme {
     //危险按钮
     danger-button:ButtonTheme,
     
-    content-background-color:color
+    content-background-color:color,
+    content-text-color:color,
+    hover-content-background-color:color
 
 }
 
@@ -67,7 +69,8 @@ global FFTheme {
         },
 
         content-background-color:Colors.white,
-        
+        content-text-color:Colors.black,
+        hover-content-background-color:#c7c7c7
     };
 
     out property <Theme> dark: {
@@ -75,14 +78,17 @@ global FFTheme {
         
         primary-button:{
             background-color:Colors.black,
+            border-color:Colors.white,
             text-color:Colors.white,
 
             //鼠标悬浮背景色-文字颜色
             hover-background-color:#686767,
+            hover-border-color:Colors.white,
             hover-text-color:Colors.white,
 
             //鼠标点击背景色-文字颜色
             click-background-color:#c3c1c1,
+            click-border-color:Colors.white,
             click-text-color:Colors.white,
         },
 
@@ -100,6 +106,8 @@ global FFTheme {
         },
 
         content-background-color:Colors.black,
+        content-text-color:Colors.white,
+        hover-content-background-color:#414141
     };
 
     in-out property <Theme> theme: bright;

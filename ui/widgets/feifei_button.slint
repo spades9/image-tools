@@ -22,6 +22,8 @@ component FFButton inherits Rectangle{
     in-out property <length> ff-border-radius: 3px;
     //边框宽度
     in-out property <length> ff-border-width: 0.8px;
+
+    in-out property <length> ff-drop-shadow-blur: 6px;
     
     callback clicked();
 
@@ -51,7 +53,10 @@ component FFButton inherits Rectangle{
         drop-shadow-color: black;
         drop-shadow-offset-x: 2px;
         drop-shadow-offset-y: 2px;
-        drop-shadow-blur: 6px;
+        drop-shadow-blur: area.pressed?ff-drop-shadow-blur - 10px:ff-drop-shadow-blur;
+        animate  drop-shadow-blur{ 
+            duration:30ms;
+        }
         Rectangle {
             Text {
                 text: button-name;
@@ -64,31 +69,5 @@ component FFButton inherits Rectangle{
     }
 }
 
-
-component text {
-    in-out property <string> tip;
-    width: 200px;
-    height: 200px;
-    HorizontalLayout {
-        Rectangle {
-            width: 100px;
-            height: 50px;
-            FFButton{
-                button-name: "按钮";
-                clicked => {
-                    //切换主题颜色
-                    //FFTheme.theme = FFTheme.dark;
-                    tip = "点击了";
-                }
-            }
-        }
-        Rectangle {
-            Text {
-                text :tip;
-            }
-        }
-    }
-    
-}
 
 export { FFButton }

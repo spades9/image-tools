@@ -1841,6 +1841,7 @@ name = "image"
 version = "0.1.0"
 dependencies = [
  "env_logger",
+ "image 0.24.7",
  "log",
  "rfd",
  "serde",

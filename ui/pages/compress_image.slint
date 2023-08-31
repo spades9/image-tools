@@ -6,8 +6,6 @@ import { FFButton } from "../widgets/feifei_button.slint";
 
 export component CompressImage inherits Rectangle { 
 
-    callback open();
-
     Content {
         Rectangle {
             VerticalLayout {
@@ -17,7 +15,7 @@ export component CompressImage inherits Rectangle {
                         button-name: "选择文件夹";
                         ff-height: 38px;
                         clicked => {
-                            open();
+                            CompressGlobal.open-folder();
                         }
                     }
                     Rectangle {
@@ -49,7 +47,6 @@ export component CompressImage inherits Rectangle {
                     
                 }
                 ListView {
-                    width: 100%;
                     for image in CompressGlobal.image-list : ImageList{
                         name: image.name;
                         status: image.status;

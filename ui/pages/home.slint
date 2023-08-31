@@ -4,6 +4,7 @@ import { FormatImage } from "./format_image.slint";
 import { About } from "./about.slint";
 import { VersionUpgrade } from "./version_upgrade.slint";
 import { FFButton } from "../widgets/feifei_button.slint";
+import {FFTheme} from "../theme.slint";
 
 //主要显示页面
 export component Home inherits Rectangle{
@@ -12,32 +13,29 @@ export component Home inherits Rectangle{
     callback move-window(length,length);
 
     out property <int> current-page: 0;
-    callback compress_open();
-    border-color: black;
-    border-width: 2px;
 
     VerticalLayout {
         //FFStatusBar {}
         //菜单部分
-        HorizontalLayout {
-            padding-top: 10px;
-            padding-left: 10px;
-            padding-right: 10px;
-            height: 43px;
-            Menu{
-                current-page <=> current-page;
+        Rectangle {
+            background: FFTheme.theme.content-background-color;
+            HorizontalLayout {
+                padding-top: 10px;
+                padding-left: 10px;
+                padding-right: 10px;
+                height: 43px;
+                Menu{
+                    current-page <=> current-page;
+                }
             }
         }
         Rectangle {
+            background: FFTheme.theme.content-background-color;
             height: 10px;
         }
         //内容部分
         HorizontalLayout {
-            if (current_page == 0) :CompressImage{
-                open => {
-                    compress_open();
-                }
-            }
+            if (current_page == 0) :CompressImage{}
             if(current-page == 1) :FormatImage{}
             if(current-page == 2) :About {}
             if(current-page == 3) :VersionUpgrade{}

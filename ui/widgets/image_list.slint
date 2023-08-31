@@ -1,5 +1,5 @@
 
-
+import {FFTheme} from "../theme.slint";
 import { Button } from "std-widgets.slint";
 export component ImageList inherits Rectangle{ 
 
@@ -11,7 +11,7 @@ export component ImageList inherits Rectangle{
 
     Rectangle {
         height: 40px;
-        background: area.has-hover?#dcdbdb:#FFFFFF;
+        background: area.has-hover?FFTheme.theme.hover-content-background-color:FFTheme.theme.content-background-color;
         HorizontalLayout {
             alignment: LayoutAlignment.space-around;
             height: 40px;
@@ -24,6 +24,7 @@ export component ImageList inherits Rectangle{
                     text: name;
                     font-size: 15px;
                     overflow: TextOverflow.elide;
+                    color: FFTheme.theme.content-text-color;
                 }
             }
             Rectangle {
@@ -34,6 +35,7 @@ export component ImageList inherits Rectangle{
                     text: status==0?"等待":status==1?"处理中":"完成";
                     font-size: 15px;
                     wrap: TextWrap.word-wrap;
+                    color: FFTheme.theme.content-text-color;
                 }
             }
         }

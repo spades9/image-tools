@@ -13,7 +13,6 @@ export component HelloWorld inherits Window{
     //点击处理方法
     callback execute();
     callback clicked(int);
-    callback compress_open();
     callback move-window(length,length);
     //显示文本
     in property <string> name: "默认";
@@ -27,9 +26,6 @@ export component HelloWorld inherits Window{
     Home { 
         clicked(e) => {
             clicked(e);
-        }
-        compress_open => {
-            compress_open();
         }
     }
 
