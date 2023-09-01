@@ -5,6 +5,7 @@ export component ImageList inherits Rectangle{
 
     in-out property <string> name;
     in-out property <int> status;
+    in-out property <string> format;
     in-out property <string> button-name;
 
     area := TouchArea {}
@@ -22,6 +23,18 @@ export component ImageList inherits Rectangle{
                     horizontal-alignment: TextHorizontalAlignment.left;
                     width: 400px;
                     text: name;
+                    font-size: 15px;
+                    overflow: TextOverflow.elide;
+                    color: FFTheme.theme.content-text-color;
+                }
+            }
+            Rectangle {
+                height: 40px;
+                width: 100px;
+                Text {
+                    horizontal-alignment: TextHorizontalAlignment.left;
+                    width: 100px;
+                    text: format;
                     font-size: 15px;
                     overflow: TextOverflow.elide;
                     color: FFTheme.theme.content-text-color;

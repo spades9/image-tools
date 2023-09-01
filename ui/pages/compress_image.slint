@@ -38,7 +38,7 @@ export component CompressImage inherits Rectangle {
                     }
                     Rectangle {
                         FFButton {
-                            button-name: "批量处理";
+                            button-name: "开始转换";
                             ff-height: 38px;
                             clicked => {
                                 CompressGlobal.compress-batching();
@@ -51,6 +51,7 @@ export component CompressImage inherits Rectangle {
                     for image in CompressGlobal.image-list : ImageList{
                         name: image.name;
                         status: image.status;
+                        format: image.format;
                     }
                 }
             }

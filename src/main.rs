@@ -6,7 +6,7 @@ use env_logger::Env;
 use std::fs::{read_dir,metadata};
 mod utils;
 mod model;
-use utils::open_folder;
+use utils::{open_folder,get_image_format,convert_image_format};
 use model::ImageListData;
 use log::{info,debug};
 
@@ -54,11 +54,15 @@ async fn main() {
                         if let Ok(f) = metadata(&path){
                             if f.is_file() {
                                 if let Some(file_name) = path.file_name(){
-                                    new_image_list.push(ImageList{
-                                        name:SharedString::from(file_name.to_str().unwrap()),
-                                        path:SharedString::from(file_name.to_str().unwrap()),
-                                        status:0
-                                    });
+                                    if let Some(format) = get_image_format(path.as_os_str().to_str().unwrap()){
+                                        info!("format:{:?}",format);
+                                        new_image_list.push(ImageList{
+                                            name:SharedString::from(file_name.to_str().unwrap()),
+                                            path:SharedString::from(path.to_str().unwrap()),
+                                            status:0,
+                                            format:SharedString::from(format)
+                                        });
+                                    }
                                 }
                             }
                         }
@@ -89,14 +93,15 @@ async fn main() {
                         ImageListData{
                             name:data.name.to_string(),
                             path:data.path.to_string(),
-                            status:data.status
+                            status:data.status,
+                            format:data.format.to_string()
                         }
                     );
                 }
             }
             tokio::spawn(async move {
                 info!("1-count:{}",count);
-                for li in 0..count{
+                for li in 0..list.len(){
                     info!("开始处理");
                     let _ = win_weak.clone().upgrade_in_event_loop(move |hello|{
                         info!("开始更新页面");
@@ -107,7 +112,9 @@ async fn main() {
                         image_list.set_row_data(li as usize, d);
                         hello.window().request_redraw();
                     });
-                    thread::sleep(Duration::from_millis(500));
+                    let data_image = list.get(li).unwrap();
+                    info!("path:{}",data_image.path);
+                    convert_image_format(&data_image.path, li as i32);
                     info!("处理完成");
                 
                     let _ = win_weak.clone().upgrade_in_event_loop(move |hello|{

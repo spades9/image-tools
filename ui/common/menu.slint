@@ -9,20 +9,16 @@ export component Menu inherits Rectangle{
         alignment: LayoutAlignment.start;
 
         FFButton {
-            button-name: "压缩图片";
+            button-name: "格式转换";
             clicked => {current-page = 0;}
         }
         FFButton {
-            button-name: "格式转换";
+            button-name: "关于软件";
             clicked => {current-page = 1;}
         }
         FFButton {
-            button-name: "关于软件";
-            clicked => {current-page = 2;}
-        }
-        FFButton {
             button-name: "系统设置";
-            clicked => {current-page = 3;}
+            clicked => {current-page = 2;}
         }
         FFButton {
             button-name: "主题切换";
